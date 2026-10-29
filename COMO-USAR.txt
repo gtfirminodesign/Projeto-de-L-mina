@@ -1,0 +1,76 @@
+ENCARTE STUDIO — 60 PRODUTOS
+
+ABRIR COM BUSCA DE FOTOS
+1. Extraia a pasta completa do ZIP.
+2. No Windows, dê dois cliques em Iniciar-encarte.cmd.
+3. Mantenha a janela do iniciador aberta enquanto usa o editor.
+O editor abre em http://127.0.0.1:8767. Não é um endereço público.
+Usa Node.js (o runtime do Codex neste computador também é reconhecido).
+
+IMPORTAR A SEMANA
+Clique em Importar lista de produtos (ou + Lista no celular).
+Use uma linha por produto:
+
+Nome; Preço; Clube
+Arroz Camil 5 kg; 18,95; normal
+Café Pilão 500 g; 14,98; clube
+Nutella 350 g; 22,90; sim
+
+Também aceita CSV/TXT e colunas copiadas do Excel.
+O nome e o preço vêm da lista; a descrição usa o tamanho que você informou.
+O preço nunca é pesquisado nem inventado. Clube marca o preço informado como
+exclusivo para membros. Você pode alterar essa marca na prévia.
+
+Clique em Conferir lista. Você pode criar uma edição limpa ou preservar as
+posições que não estão na lista. Só Aplicar ao encarte troca os produtos.
+Até 60 espaços: 30 na página 1 e 30 na página 2.
+
+FOTOS E RECORTE
+Buscar fotos e recortar consulta o catálogo público Open Food Facts e tenta
+recortar as fotos mais próximas. Confira marca, embalagem, tamanho e recorte.
+É um catálogo de produtos, não uma busca universal em toda a internet.
+Produtos ausentes ou com correspondência fraca ficam pendentes.
+Escolher foto permite procurar novamente, selecionar outra ou enviar sua foto.
+A primeira remoção com IA baixa um modelo e pode demorar alguns minutos.
+A imagem é processada no navegador. Para fundo branco simples existe também
+o botão Remover fundo branco (ele preserva áreas brancas internas fechadas).
+Fotos brancas/transparentes e fundos complexos podem exigir outra imagem.
+Os créditos das imagens encontradas acompanham os produtos exportados.
+O catálogo possui limite de consultas: uma lista de 60 itens leva minutos.
+
+CELULAR
+O HTML abre no celular com ofertas em duas colunas e controles maiores.
+O arquivo HTML independente permite editar, importar listas, enviar fotos,
+recortar e exportar. A busca no catálogo exige o servidor do pacote no
+computador ou uma futura hospedagem com a API. O iniciador Windows não roda
+no celular e o endereço 127.0.0.1 do computador não é acessível pelo telefone.
+No celular, Editar abre o painel de produtos/identidade; + Lista importa.
+Na impressão, a grade usa 30 produtos em cada uma das duas páginas A4.
+
+SALVAR E COMPARTILHAR
+Alterações ficam neste navegador/dispositivo. Baixe uma cópia editável a cada
+semana e use Restaurar cópia para transferir a edição a outro dispositivo.
+As cópias editáveis têm limite de 35 MB, tanto ao exportar quanto ao restaurar.
+Se exceder esse tamanho, reduza ou remova fotos e tente exportar novamente.
+Exportar encarte permite gerar HTML de visualização, cópia editável e impressão.
+Na impressão escolha A4, margens nenhuma e desative cabeçalhos do navegador;
+ative gráficos de fundo para manter as cores. Escolha Salvar como PDF.
+Revisar os produtos e preços de exemplo antes de distribuir.
+
+ARQUIVOS
+server.cjs: servidor local com rotas restritas ao catálogo e às imagens.
+site/: todos os arquivos-fonte editáveis do editor.
+LICENSE-AGPL-3.0.txt e CREDITOS.txt: licenças e créditos.
+
+DESIGN COM DIVISÕES DE FUNDO
+Na aba Identidade, abra “Estilo da referência”. Cada página possui quatro
+blocos com nome, cor, textura lisa/amadeirada e imagem de fundo própria.
+Altere as linhas e clique em Aplicar distribuição. Cada linha representa
+5 produtos na impressão; a soma por página deve ser 6 (30 produtos).
+Use 0 para ocultar uma divisão. No celular, os blocos usam duas colunas.
+O cabeçalho permite alterar textos, cores e logotipo. Você também pode
+enviar um banner pronto e escolher “Banner pronto, sem textos por cima”.
+Os elementos de uma imagem enviada não são editáveis individualmente;
+os textos, cores e divisões construídos no editor são editáveis.
+
+IMPORTAR EXCEL: Clique em Importar lista > Abrir Excel / TXT / CSV. Escolha um XLSX de até 10 MB, a planilha, a linha do cabeçalho e as colunas. Clique Conferir produtos e depois Aplicar ao encarte. Máximo 60 produtos. Fórmulas usam o último resultado salvo: recalcule e salve no Excel antes de importar. Nenhuma planilha é enviada à internet.
