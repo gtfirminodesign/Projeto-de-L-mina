@@ -1,0 +1,64 @@
+SUA LÂMINA STUDIO — APRESENTAÇÃO E EDITOR PROTEGIDO
+
+1. Envie o conteúdo deste pacote para a raiz do seu repositório GitHub.
+   Mantenha as pastas public, api e site, junto com access.cjs, server.cjs,
+   publication.cjs, hosting.cjs e vercel.json. Substitua arquivos de mesmo nome.
+   Não envie somente o ZIP. Não envie senhas ao GitHub.
+
+2. Na Vercel, abra Settings > Build and Deployment.
+   MUDE Root Directory de site para vazio (raiz do repositório) e salve.
+   Framework Preset: Other.
+   Desative os Overrides de Build, Install e Output Directory para usar
+   vercel.json: build vazio, install vazio e Output Directory = public.
+   Não use site ou ponto como Output Directory nesta versão.
+
+3. Em Settings > Environment Variables, crie:
+   ADMIN_USER = nome de usuário escolhido por você
+   ADMIN_PASSWORD = senha exclusiva com pelo menos 16 caracteres
+   Marque Production e Preview, se também quiser testar os previews.
+   Não há usuário nem senha padrão. Não precisa informar sua senha no chat.
+   PUBLIC_URL é opcional na Vercel; deixe ausente para aceitar o domínio
+   atual de cada deployment (inclusive previews).
+
+4. Faça Redeploy após salvar as configurações e variáveis.
+   A página inicial apresenta o studio, sem ferramentas de edição.
+   Entrar no editor abre /login. Após autenticar, o editor abre em /editor/.
+   O botão Sair encerra a sessão deste navegador. A sessão dura até 8 horas.
+   Alterar ADMIN_USER ou ADMIN_PASSWORD e fazer Redeploy invalida as sessões.
+
+IMPORTANTE SOBRE A ATUALIZAÇÃO
+O editor da publicação antiga só será substituído quando você fizer este
+deploy. Links antigos de deployments anteriores podem continuar acessíveis:
+na Vercel, remova ou restrinja os deployments antigos que expunham o editor.
+Uma senha não altera automaticamente as publicações anteriores.
+
+COMO FUNCIONA A PROTEÇÃO
+O servidor verifica usuário e senha. O navegador recebe um cookie assinado,
+HttpOnly, SameSite=Strict e Secure no HTTPS. Editor e APIs exigem sessão.
+Só a pasta public é publicada como arquivos estáticos; site fica dentro da
+função e é servido somente após autenticação. A senha não vai para o HTML.
+Há bloqueio temporário após 10 falhas por instância do servidor. Em funções
+serverless, esse contador não é global nem persistente entre instâncias.
+Um único acesso administrativo é configurado; não há cadastro de clientes.
+
+O QUE ESTÁ DISPONÍVEL
+Apresentação, login, edição, importação, exportação e APIs de busca de fotos.
+As edições continuam salvas no navegador; baixe backups para transferi-las.
+O login não sincroniza edições entre dispositivos e não apaga backups locais.
+A publicação de /ofertas e QR Code na Vercel ainda precisa de armazenamento
+persistente e retorna indisponível nesta versão. Não grava no disco temporário.
+Em hospedagem Node com DATA_DIR persistente, essa publicação continua disponível.
+
+TESTE LOCAL DA VERSÃO PROTEGIDA
+No PowerShell, configure ADMIN_USER e ADMIN_PASSWORD no ambiente e execute:
+node hosting.cjs
+Abra http://127.0.0.1:3000.
+Iniciar-encarte.cmd continua sendo o editor local original, sem login,
+restrito a 127.0.0.1. Ele não é o ponto de entrada da hospedagem protegida.
+
+TESTES
+tests/access.cjs exercita o login, bloqueio de arquivos e APIs, cookie forjado,
+expiração, origem externa, logout, ausência de configuração, limite de falhas,
+edição e backup no Edge, além de capturas desktop/celular. Requer Playwright
+e Microsoft Edge; defina PLAYWRIGHT_MODULE se necessário.
+Validação de produção deve ser repetida no domínio após o deploy.

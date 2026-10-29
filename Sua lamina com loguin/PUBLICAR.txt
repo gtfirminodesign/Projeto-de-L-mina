@@ -1,0 +1,35 @@
+PUBLICAÇÃO — SUA LÂMINA STUDIO
+
+VERSÃO COM APRESENTAÇÃO E LOGIN
+Para Vercel via GitHub, siga VERCEL-LOGIN.txt. Root Directory deve ficar
+vazio e Output Directory deve ser public, conforme vercel.json.
+Na hospedagem protegida, configure ADMIN_USER e ADMIN_PASSWORD.
+A página inicial é pública; o editor exige login em /login.
+
+TESTE LOCAL
+1. Abra Iniciar-encarte.cmd (se estiver aberto, feche e abra novamente).
+2. Entre no editor e na aba QR Code.
+3. Clique em Publicar agora. A página fixa será http://127.0.0.1:8767/ofertas.
+4. Marque Atualizar automaticamente ao salvar para enviar alterações após 1,8 segundo sem novas edições.
+5. O QR de teste funciona somente no computador que executa o serviço. Não imprima para clientes.
+
+HOSPEDAGEM DEFINITIVA
+Use hospedagem Node.js com HTTPS e disco persistente. Envie a pasta completa.
+Comando de inicialização: node hosting.cjs
+Variáveis de ambiente:
+PUBLIC_URL=https://seu-dominio.com
+ADMIN_PASSWORD=uma-senha-forte-com-pelo-menos-16-caracteres
+ADMIN_USER=seu-usuario-administrativo
+DATA_DIR=caminho-do-disco-persistente
+PORT=porta-definida-pela-hospedagem
+
+Abra o site publicado e clique em Entrar no editor. Use ADMIN_USER e a senha
+configurada. A apresentação e /ofertas são públicos; editor e APIs exigem login.
+Na aba QR Code, publique a primeira edição e baixe o código para imprimir.
+Use sempre o editor no endereço publicado para sincronizar; o HTML local continua
+apontando para o serviço local. Não basta editar um texto de domínio no HTML.
+O arquivo publicado substitui a edição anterior, sem mudar /ofertas. Salvar um
+HTML no computador não altera a internet. Falhas de envio aparecem na aba QR.
+Mantenha o DATA_DIR persistente para não perder o encarte quando reiniciar o serviço.
+A página não fica em cache e consulta novamente o mesmo endereço a cada 2 minutos.
+Mudar o domínio muda o QR Code: defina o endereço definitivo antes de imprimir.

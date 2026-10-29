@@ -1,0 +1,24 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "",
+  "installCommand": "",
+  "outputDirectory": "public",
+  "functions": { "api/gateway.js": { "includeFiles": "{site,public}/**", "maxDuration": 60 } },
+  "rewrites": [
+    { "source": "/editor", "destination": "/api/gateway?route=/editor" },
+    { "source": "/editor/:path*", "destination": "/api/gateway?route=/editor/:path*" },
+    { "source": "/login", "destination": "/api/gateway?route=/login" },
+    { "source": "/logout", "destination": "/api/gateway?route=/logout" },
+    { "source": "/api/health", "destination": "/api/gateway?route=/api/health" },
+    { "source": "/api/product-search", "destination": "/api/gateway?route=/api/product-search" },
+    { "source": "/api/product-image", "destination": "/api/gateway?route=/api/product-image" },
+    { "source": "/api/publication", "destination": "/api/gateway?route=/api/publication" },
+    { "source": "/ofertas", "destination": "/api/gateway?route=/ofertas" }
+  ],
+  "headers": [{ "source": "/(.*)", "headers": [
+    { "key": "X-Content-Type-Options", "value": "nosniff" },
+    { "key": "Referrer-Policy", "value": "same-origin" },
+    { "key": "X-Frame-Options", "value": "DENY" }
+  ] }]
+}

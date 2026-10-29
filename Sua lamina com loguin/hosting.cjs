@@ -1,0 +1,10 @@
+'use strict';
+const http=require('node:http');
+const {createProtectedApp}=require('./access.cjs');
+if(!process.env.ADMIN_USER||!process.env.ADMIN_PASSWORD||process.env.ADMIN_PASSWORD.length<16)throw Error('Configure ADMIN_USER e ADMIN_PASSWORD (mínimo 16 caracteres).');
+const publicUrl=process.env.PUBLIC_URL||'http://127.0.0.1:3000';
+const origin=new URL(publicUrl);
+const local=['127.0.0.1','localhost'].includes(origin.hostname);
+if(!local&&origin.protocol!=='https:')throw Error('Use PUBLIC_URL com HTTPS na hospedagem.');
+if(!local&&!process.env.DATA_DIR)throw Error('Configure DATA_DIR em disco persistente para publicar as ofertas.');
+http.createServer(createProtectedApp({publicUrl,secure:origin.protocol==='https:',serverless:false})).listen(Number(process.env.PORT)||3000,local?'127.0.0.1':'0.0.0.0',()=>console.log('Sua Lâmina studio: '+publicUrl));
